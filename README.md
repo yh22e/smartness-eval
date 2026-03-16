@@ -1,4 +1,4 @@
-<![CDATA[<div align="center">
+<div align="center">
 
 # 🎯 OpenClaw Smartness Eval
 
@@ -54,70 +54,43 @@ python3 scripts/eval.py --mode standard --format markdown
 
 # 5. Deep evaluation with trend comparison (all tests x2, 30-day window)
 python3 scripts/eval.py --mode deep --compare-last
-```
 
----
+📊 The 12 Dimensions
+7 Main Dimensions / 七大主维度
+#	Dimension	维度	Weight	What it measures
+1	Understanding	理解	10%	Intent recognition, constraint capture, context consistency
+2	Analysis	分析	10%	Problem decomposition, dependency identification, structured output
+3	Thinking	思考	10%	Risk awareness, self-check, adversarial reasoning
+4	Reasoning	推理	15%	Logic chain completeness, evidence support, confidence calibration
+5	Self-iteration	自我迭代	10%	Error fix rate, pattern promotion, learning freshness
+6	Dialogue	对话沟通	10%	Clarity, completeness, actionability, tone matching
+7	Responsiveness	响应时长	5%	P50/P95 latency, timeout rate, API chain health
+5 Expanded Dimensions / 五大扩展维度
+#	Dimension	维度	Weight	What it measures
+8	Robustness	鲁棒性	8%	Stability under noise, long context, edge cases
+9	Generalization	泛化能力	5%	Cross-domain routing accuracy, intent diversity
+10	Policy adherence	策略遵循	7%	AGENTS.md compliance, safety confirmation, operation constraints
+11	Tool reliability	工具可靠性	5%	Script availability, cron health, state file integrity
+12	Calibration	校准能力	5%	Uncertainty expression, confidence accuracy, high-confidence error rate
+Each dimension has a detailed 0–5 rubric with concrete criteria. See config/rubrics.json.
 
-## 📊 The 12 Dimensions
-
-### 7 Main Dimensions / 七大主维度
-
-| # | Dimension | 维度 | Weight | What it measures |
-|---|-----------|------|--------|------------------|
-| 1 | **Understanding** | 理解 | 10% | Intent recognition, constraint capture, context consistency |
-| 2 | **Analysis** | 分析 | 10% | Problem decomposition, dependency identification, structured output |
-| 3 | **Thinking** | 思考 | 10% | Risk awareness, self-check, adversarial reasoning |
-| 4 | **Reasoning** | 推理 | 15% | Logic chain completeness, evidence support, confidence calibration |
-| 5 | **Self-iteration** | 自我迭代 | 10% | Error fix rate, pattern promotion, learning freshness |
-| 6 | **Dialogue** | 对话沟通 | 10% | Clarity, completeness, actionability, tone matching |
-| 7 | **Responsiveness** | 响应时长 | 5% | P50/P95 latency, timeout rate, API chain health |
-
-### 5 Expanded Dimensions / 五大扩展维度
-
-| # | Dimension | 维度 | Weight | What it measures |
-|---|-----------|------|--------|------------------|
-| 8 | **Robustness** | 鲁棒性 | 8% | Stability under noise, long context, edge cases |
-| 9 | **Generalization** | 泛化能力 | 5% | Cross-domain routing accuracy, intent diversity |
-| 10 | **Policy adherence** | 策略遵循 | 7% | AGENTS.md compliance, safety confirmation, operation constraints |
-| 11 | **Tool reliability** | 工具可靠性 | 5% | Script availability, cron health, state file integrity |
-| 12 | **Calibration** | 校准能力 | 5% | Uncertainty expression, confidence accuracy, high-confidence error rate |
-
-> Each dimension has a detailed **0–5 rubric** with concrete criteria. See [`config/rubrics.json`](./config/rubrics.json).
-
----
-
-## 📋 Evaluation Modes / 评估模式
-
-| Mode | Tests | Data window | Repeat | Probes | Best for |
-|------|-------|-------------|--------|--------|----------|
-| `quick` | ~10 | 3 days | 1x | 1 | Daily self-reflection / 每日自省 |
-| `standard` | ~25 | 7 days | 1x | 2 | Weekly report / 每周能力周报 |
-| `deep` | All | 30 days | 2x | 3 | Monthly audit or post-upgrade / 月度审计 |
-
----
-
-## 🔧 CLI Reference
-
-```bash
+📋 Evaluation Modes / 评估模式
+Mode	Tests	Data window	Repeat	Probes	Best for
+quick	~10	3 days	1x	1	Daily self-reflection / 每日自省
+standard	~25	7 days	1x	2	Weekly report / 每周能力周报
+deep	All	30 days	2x	3	Monthly audit or post-upgrade / 月度审计
+🔧 CLI Reference
+bash
 python3 scripts/eval.py [OPTIONS]
-```
-
-| Option | Description | 说明 |
-|--------|-------------|------|
-| `--mode {quick,standard,deep}` | Evaluation depth (default: `standard`) | 评估深度 |
-| `--format {json,markdown}` | Output format (default: `json`) | 输出格式 |
-| `--compare-last` | Show trend deltas vs previous run | 与上次对比趋势 |
-| `--llm-judge` | Enable LLM subjective scoring (needs API key) | LLM 裁判打分 |
-| `--no-probes` | Disable anti-gaming probes | 关闭反作弊探针 |
-
----
-
-## 📈 Example Output / 输出示例
-
-<details>
-<summary><b>Click to expand — real evaluation result / 点击展开真实评估结果</b></summary>
-
-```
+Option	Description	说明
+--mode {quick,standard,deep}	Evaluation depth (default: standard)	评估深度
+--format {json,markdown}	Output format (default: json)	输出格式
+--compare-last	Show trend deltas vs previous run	与上次对比趋势
+--llm-judge	Enable LLM subjective scoring (needs API key)	LLM 裁判打分
+--no-probes	Disable anti-gaming probes	关闭反作弊探针
+📈 Example Output / 输出示例
+<details> <summary><b>Click to expand — real evaluation result / 点击展开真实评估结果</b></summary>
+text
 Overall: 71.36 (B-)
 CI: [71.36, 71.36]  |  mode: quick  |  samples: 15
 
@@ -151,40 +124,24 @@ Top evidence / 关键证据:
 Recommendations / 建议:
   - 修复出错 Cron 任务或将其 thin-script 化
   - 增加 finalize 路径使用，提升 thinking/calibration 可信度
-```
-
 </details>
+🗂 Output Artifacts / 输出文件
+File	Path	Purpose / 用途
+Run JSON	state/smartness-eval/runs/<timestamp>.json	Complete structured result / 完整结构化结果
+Markdown report	state/smartness-eval/reports/<date>.md	Human-readable report / 人类可读报告
+History	state/smartness-eval/history.jsonl	One-line-per-run for longitudinal analysis / 纵向趋势分析
+🔒 Security Model / 安全模型
+This tool executes test commands via subprocess. To prevent abuse, eval.py enforces:
 
----
-
-## 🗂 Output Artifacts / 输出文件
-
-| File | Path | Purpose / 用途 |
-|------|------|----------------|
-| **Run JSON** | `state/smartness-eval/runs/<timestamp>.json` | Complete structured result / 完整结构化结果 |
-| **Markdown report** | `state/smartness-eval/reports/<date>.md` | Human-readable report / 人类可读报告 |
-| **History** | `state/smartness-eval/history.jsonl` | One-line-per-run for longitudinal analysis / 纵向趋势分析 |
-
----
-
-## 🔒 Security Model / 安全模型
-
-This tool executes test commands via `subprocess`. To prevent abuse, `eval.py` enforces:
-
-| Rule | Detail | 说明 |
-|------|--------|------|
-| Interpreter whitelist | Only `python3` allowed | 仅允许 python3 |
-| No inline execution | `-c` and `exec(` blocked | 禁止内联代码执行 |
-| No absolute paths | All paths must be relative | 禁止绝对路径 |
-| No path traversal | `..` segments rejected | 禁止路径穿越 |
-| Prefix whitelist | Only `scripts/`, `skills/…`, `state/`, `benchmarks/` | 前缀白名单 |
-| Network off by default | `--llm-judge` requires explicit opt-in + API key | 网络默认关闭 |
-
----
-
-## 📂 Repository Structure
-
-```text
+Rule	Detail	说明
+Interpreter whitelist	Only python3 allowed	仅允许 python3
+No inline execution	-c and exec( blocked	禁止内联代码执行
+No absolute paths	All paths must be relative	禁止绝对路径
+No path traversal	.. segments rejected	禁止路径穿越
+Prefix whitelist	Only scripts/, skills/…, state/, benchmarks/	前缀白名单
+Network off by default	--llm-judge requires explicit opt-in + API key	网络默认关闭
+📂 Repository Structure
+text
 smartness-eval/
 ├── README.md                  ← EN + CN overview (this file)
 ├── README_CN.md               ← 完整中文文档
@@ -218,115 +175,87 @@ smartness-eval/
     ├── workflows/ci.yml       ← CI: structure check on push/PR
     ├── ISSUE_TEMPLATE/        ← Bug report & feature request
     └── pull_request_template.md
-```
-
----
-
-## 🖥 Compatibility / 兼容性
-
-| Requirement | Version |
-|-------------|---------|
-| **Python** | 3.9+ |
-| **OpenClaw** | 2026.3.13+ |
-| **Workspace** | V5.1+ |
-| **OS** | macOS, Linux |
-| **External deps** | None (stdlib only). `--llm-judge` optionally uses `urllib.request` |
-
----
-
-## 📚 Documentation
-
-| Document | Description |
-|----------|-------------|
-| [Architecture](./docs/ARCHITECTURE.md) | System design, data flow, safety model |
-| [Scoring formulas](./docs/SCORING.md) | How each dimension is computed, with formulas |
-| [FAQ](./docs/FAQ.md) | Common questions in English and Chinese |
-| [Roadmap](./docs/ROADMAP.md) | Planned features for v0.3 → v1.0 |
-| [Showcase](./docs/SHOWCASE.md) | Real results, sharing templates |
-| [Changelog](./CHANGELOG.md) | Full version history |
-
----
-
+🖥 Compatibility / 兼容性
+Requirement	Version
+Python	3.9+
+OpenClaw	2026.3.13+
+Workspace	V5.1+
+OS	macOS, Linux
+External deps	None (stdlib only). --llm-judge optionally uses urllib.request
+📚 Documentation
+Document	Description
+Architecture	System design, data flow, safety model
+Scoring formulas	How each dimension is computed, with formulas
+FAQ	Common questions in English and Chinese
+Roadmap	Planned features for v0.3 → v1.0
+Showcase	Real results, sharing templates
+Changelog	Full version history
 <a id="-中文说明"></a>
 
-## 🇨🇳 中文说明
+🇨🇳 中文说明
+这是什么
+smartness-eval 是一个 AI Agent 智能度评估框架。它解决一个核心问题：你的 Agent 到底有多聪明？这个数字是涨了还是跌了？
 
-### 这是什么
+大多数 Agent 的改进只停留在"感觉好了"。这个项目把能力进化变成 可测量、可对比、可追溯 的过程。
 
-`smartness-eval` 是一个 AI Agent 智能度评估框架。它解决一个核心问题：**你的 Agent 到底有多聪明？这个数字是涨了还是跌了？**
+核心特性
+特性	说明
+12 维度评分	理解、分析、思考、推理、自我迭代、对话沟通、响应时长 + 鲁棒性、泛化、策略遵循、工具可靠性、校准
+28 项自动化测试	涵盖意图识别、风险检测、推理模板验证、API 健康检查等
+真实运行数据	从延迟指标、错误追踪、推理知识库、Cron 状态等数据源交叉验证
+反作弊探针	随机注入测试输入，防止针对已知测试的过拟合
+趋势追踪	--compare-last 对比上一次评估，显示各维度变化和退化告警
+可选 LLM 裁判	--llm-judge 调用大模型做主观可信度打分（默认关闭）
+安全执行	命令白名单 + 禁止内联代码 + 禁止绝对路径 + 前缀限制
+评分公式概要
+每个维度的最终得分 = 任务测试得分 × 权重 + 真实运行指标 × 权重。
 
-大多数 Agent 的改进只停留在"感觉好了"。这个项目把能力进化变成 **可测量、可对比、可追溯** 的过程。
+例如 reasoning（推理）维度：
 
-### 核心特性
-
-| 特性 | 说明 |
-|------|------|
-| **12 维度评分** | 理解、分析、思考、推理、自我迭代、对话沟通、响应时长 + 鲁棒性、泛化、策略遵循、工具可靠性、校准 |
-| **28 项自动化测试** | 涵盖意图识别、风险检测、推理模板验证、API 健康检查等 |
-| **真实运行数据** | 从延迟指标、错误追踪、推理知识库、Cron 状态等数据源交叉验证 |
-| **反作弊探针** | 随机注入测试输入，防止针对已知测试的过拟合 |
-| **趋势追踪** | `--compare-last` 对比上一次评估，显示各维度变化和退化告警 |
-| **可选 LLM 裁判** | `--llm-judge` 调用大模型做主观可信度打分（默认关闭） |
-| **安全执行** | 命令白名单 + 禁止内联代码 + 禁止绝对路径 + 前缀限制 |
-
-### 评分公式概要
-
-每个维度的最终得分 = **任务测试得分** × 权重 + **真实运行指标** × 权重。
-
-例如 `reasoning`（推理）维度：
-```
+text
 reasoning = task_score × 0.40
            + benchmark_pass_rate × 0.15
            + reasoning_depth × 0.25       # 高置信条目占比
            + reasoning_total × 0.20       # 知识库总量（上限 120 条）
-```
+完整公式见 docs/SCORING.md。
 
-完整公式见 [docs/SCORING.md](./docs/SCORING.md)。
+数据来源
+数据源	路径	用途
+响应延迟	state/response-latency-metrics.json	P50/P95 计算
+错误追踪	state/error-tracker.json	修复率、重复率
+模式库	state/pattern-library.json	高置信模式数量
+Cron 报告	state/cron-governor-report.json	任务健康度
+Benchmark	state/benchmark-results/history.jsonl	通过率
+推理知识库	.reasoning/reasoning-store.sqlite	推理深度与覆盖
+编排器日志	state/v5-orchestrator-log.json	管道使用量
+消息分析日志	state/message-analyzer-log.json	真实交互采样
+反思报告	state/reflection-reports/	自省数量
+告警日志	state/alerts.jsonl	告警频率
+👤 Author / 作者
+圆规
 
-### 数据来源
+GitHub: @yh22e
 
-| 数据源 | 路径 | 用途 |
-|--------|------|------|
-| 响应延迟 | `state/response-latency-metrics.json` | P50/P95 计算 |
-| 错误追踪 | `state/error-tracker.json` | 修复率、重复率 |
-| 模式库 | `state/pattern-library.json` | 高置信模式数量 |
-| Cron 报告 | `state/cron-governor-report.json` | 任务健康度 |
-| Benchmark | `state/benchmark-results/history.jsonl` | 通过率 |
-| 推理知识库 | `.reasoning/reasoning-store.sqlite` | 推理深度与覆盖 |
-| 编排器日志 | `state/v5-orchestrator-log.json` | 管道使用量 |
-| 消息分析日志 | `state/message-analyzer-log.json` | 真实交互采样 |
-| 反思报告 | `state/reflection-reports/` | 自省数量 |
-| 告警日志 | `state/alerts.jsonl` | 告警频率 |
+ClawHub: yh22e
 
----
-
-## 👤 Author / 作者
-
-**圆规**
-
-- GitHub: [@yh22e](https://github.com/yh22e)
-- ClawHub: [yh22e](https://clawhub.com/yh22e)
-
----
-
-## 🤝 Contributing / 参与贡献
-
+🤝 Contributing / 参与贡献
 Issues and PRs are welcome! / 欢迎提交 Issue 和 PR！
 
-- 📖 [CONTRIBUTING.md](./CONTRIBUTING.md) — Development setup & PR guidelines
-- 🔒 [SECURITY.md](./SECURITY.md) — Security policy
-- 🗺 [docs/ROADMAP.md](./docs/ROADMAP.md) — What's planned next
+📖 CONTRIBUTING.md — Development setup & PR guidelines
 
----
+🔒 SECURITY.md — Security policy
 
-## ⭐ Star & Share
+🗺 docs/ROADMAP.md — What's planned next
 
+⭐ Star & Share
 If this project helps you understand your AI agent better:
 
-1. **⭐ Star this repo** — it helps others discover the project
-2. **🧪 Share your eval result** — post a screenshot of your score
-3. **🔁 Post your before/after** — show capability improvement over time
-4. **💬 Open a Discussion** — share tips, ask questions, suggest dimensions
+⭐ Star this repo — it helps others discover the project
 
-> _"The first step to building a smarter agent is knowing exactly how smart it is today."_
-]]>
+🧪 Share your eval result — post a screenshot of your score
+
+🔁 Post your before/after — show capability improvement over time
+
+💬 Open a Discussion — share tips, ask questions, suggest dimensions
+
+"The first step to building a smarter agent is knowing exactly how smart it is today."
